@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>D3 Test</title>
+    <script type="text/javascript" src="d3/d3.js"></script>
+    <style>
+        div.bar {
+        display: inline-block;
+        width: 20px;
+        height: 75px;   /* Esto se cambiará próximamente */
+        background-color: teal;
+		margin-right: 2px;
+    }
+    </style>
+</head>
+<body>
+    <script type="text/javascript">
+        let dataset = []
+        for (var i = 0; i < 25; i++) {
+            let newNumber = Math.random() * 30
+          dataset.push(newNumber)
+        }
+
+        //dataset = [5, 10 , 15, 20, 25]
+
+        let w=500, h=100
+
+        let svg = d3.select("body")
+                    .append("svg")
+                    .attr("width", w)
+                    .attr("height", h)
+            
+        let circles = svg.selectAll("circle")
+                            .data(dataset)
+                            .enter()
+                            .append("circle")
+
+        circles.attr("cx", (d, i) => (i * 50) + 35)
+                .attr("cy", h/2)
+                .attr("r", (d) => d)
+                .attr("fill", "yellow")
+                .attr("stroke", "orange")
+                .attr("stroke-width", (d) => d/2)
+    </script>
+</body>
+</html>  
